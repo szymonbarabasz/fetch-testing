@@ -65,18 +65,21 @@ function MovieFetch() {
     return <h1>Ładowanie...</h1>;
   } else {
     return (
-      <div className="moviestable">
-        <h2>Tabela z filmami, wpisz poniżej</h2>
-        <Search handleChange={handleChange} />
-        <div>Tytuł: {items.Title}</div>
-        <div>Aktorzy: {items.Actors}</div>
-        <div>Reżyser: {items.Director}</div>
-        <div>Gatunek: {items.Genre}</div>
-        <div>Rok produkcji: {items.Year}</div>
-        <div>Ocena imdb: {items.imdbRating}</div>
-        <div>Ocena metascore: {items.Metascore}</div>
-        <Ratings ratings={items.Ratings} />
-        <div>Data wydania: {items.Released}</div>
+      <div className="moviesfetch">
+        <div className="moviestable">
+          <h2 className="title">Tabela z danymi nt. filmów</h2>
+          <h3 className="subtitle">wpisz tytuł filmu:</h3>
+          <Search handleChange={handleChange} />
+          <div>Tytuł: {items.Title}</div>
+          <div>Aktorzy: {items.Actors}</div>
+          <div>Reżyser: {items.Director}</div>
+          <div>Gatunek: {items.Genre}</div>
+          <div>Rok produkcji: {items.Year}</div>
+          <div>Ocena imdb: {items.imdbRating}</div>
+          <div>Ocena metascore: {items.Metascore}</div>
+          <Ratings ratings={items.Ratings} />
+          <div>Data wydania: {items.Released}</div>
+        </div>
       </div>
     );
   }
@@ -171,7 +174,7 @@ function BusSelect(props) {
   return busArr;
 }
 
-function RozekFetch() {
+function MZKFetch() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
@@ -241,26 +244,29 @@ function RozekFetch() {
   } else {
     return (
       //dangerouslySetInnerHTML - zamienia text w html
-      <div className="żywiectable">
-        <h2 className="timetable">Tabela rozkładu jazdy MZK Żywiec</h2>
-        <select className="stopSelect" onChange={handleStop}>
-          <option value="58" key="58">
-            Jubileuszowa
-          </option>
-          <option value="647" key="647">
-            Dworzec
-          </option>
-          <option value="548" key="548">
-            Piłsudskiego II
-          </option>
-        </select>
-        <BusSelect
-          handleChange={handleChange}
-          stop={stop}
-          direction={setDirection}
-          line={setLine}
-        />
-        <div dangerouslySetInnerHTML={{ __html: items }}></div>
+      <div className="MZKfetch">
+        <div className="zywiectable">
+          <h2 className="title">Tabela rozkładu jazdy MZK Żywiec</h2>
+          <h3 className="subtitle">wybierz przystanek i linię:</h3>
+          <select className="stopSelect" onChange={handleStop}>
+            <option value="58" key="58">
+              Jubileuszowa
+            </option>
+            <option value="647" key="647">
+              Dworzec
+            </option>
+            <option value="548" key="548">
+              Piłsudskiego II
+            </option>
+          </select>
+          <BusSelect
+            handleChange={handleChange}
+            stop={stop}
+            direction={setDirection}
+            line={setLine}
+          />
+          <div dangerouslySetInnerHTML={{ __html: items }}></div>
+        </div>
       </div>
     );
   }
@@ -270,8 +276,8 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <MovieFetch />
-        <RozekFetch />
+        <MovieFetch className="moviefetch" />
+        <MZKFetch className="MZKfetch" />
       </React.Fragment>
     );
   }
