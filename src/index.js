@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 function Search(props) {
-  return <input type="search" onChange={props.handleChange} />;
+  return <input className="moviesinput" type="search" onChange={props.handleChange} />;
 }
 // const title = prompt("Wpisz tytuł filmu który szukasz po angielsku");
 
@@ -66,19 +66,23 @@ function MovieFetch() {
   } else {
     return (
       <div className="moviesfetch">
-        <div className="moviestable">
-          <h2 className="title">Tabela z danymi nt. filmów</h2>
-          <h3 className="subtitle">wpisz tytuł filmu:</h3>
+        <div className="movies">
+          <div className="header">
+            <h2 className="title">Tabela z danymi nt. filmów</h2>
+            <h3 className="subtitle">wpisz tytuł filmu:</h3>
+          </div>
           <Search handleChange={handleChange} />
-          <div>Tytuł: {items.Title}</div>
-          <div>Aktorzy: {items.Actors}</div>
-          <div>Reżyser: {items.Director}</div>
-          <div>Gatunek: {items.Genre}</div>
-          <div>Rok produkcji: {items.Year}</div>
-          <div>Ocena imdb: {items.imdbRating}</div>
-          <div>Ocena metascore: {items.Metascore}</div>
-          <Ratings ratings={items.Ratings} />
-          <div>Data wydania: {items.Released}</div>
+          <div className="moviestable">
+            <div>Tytuł: {items.Title}</div>
+            <div>Aktorzy: {items.Actors}</div>
+            <div>Reżyser: {items.Director}</div>
+            <div>Gatunek: {items.Genre}</div>
+            <div>Rok produkcji: {items.Year}</div>
+            <div>Ocena imdb: {items.imdbRating}</div>
+            <div>Ocena metascore: {items.Metascore}</div>
+            <Ratings ratings={items.Ratings} />
+            <div>Data wydania: {items.Released}</div>
+          </div>
         </div>
       </div>
     );
@@ -246,8 +250,10 @@ function MZKFetch() {
       //dangerouslySetInnerHTML - zamienia text w html
       <div className="MZKfetch">
         <div className="zywiectable">
-          <h2 className="title">Tabela rozkładu jazdy MZK Żywiec</h2>
-          <h3 className="subtitle">wybierz przystanek i linię:</h3>
+          <div className="header">
+            <h2 className="title">Tabela rozkładu jazdy MZK Żywiec</h2>
+            <h3 className="subtitle">wybierz przystanek i linię:</h3>
+          </div>
           <select className="stopSelect" onChange={handleStop}>
             <option value="58" key="58">
               Jubileuszowa
@@ -265,7 +271,10 @@ function MZKFetch() {
             direction={setDirection}
             line={setLine}
           />
-          <div dangerouslySetInnerHTML={{ __html: items }}></div>
+          <div
+            className="timetable"
+            dangerouslySetInnerHTML={{ __html: items }}
+          ></div>
         </div>
       </div>
     );
