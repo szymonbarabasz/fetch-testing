@@ -3,7 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 function Search(props) {
-  return <input className="moviesinput" type="search" onChange={props.handleChange} />;
+  return (
+    <input
+      className="moviesinput"
+      type="search"
+      onChange={props.handleChange}
+    />
+  );
 }
 // const title = prompt("Wpisz tytuł filmu który szukasz po angielsku");
 
@@ -22,6 +28,18 @@ function Ratings(props) {
     }
   }
   return ratingsArr;
+}
+
+function ScrollButton(props) {
+  function handleClick(){
+    window.scroll({
+      top: document.body.offsetHeight,
+      left: 0,
+      behavior: "smooth"
+    })
+  }
+
+  return <button className="scrollButton fas fa-chevron-down" onClick={handleClick}></button>;
 }
 
 function MovieFetch() {
@@ -62,7 +80,22 @@ function MovieFetch() {
   if (error) {
     return <h1 style={{ fontStyle: 150 }}>Error! {error.message}</h1>;
   } else if (!isLoaded) {
-    return <h1>Ładowanie...</h1>;
+    return (
+      <div className="movies">
+        <div className="header skeleton" />
+        <div className="moviestableSkeleton">
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+          <div className="skeleton-text skeleton" />
+        </div>
+      </div>
+    );
   } else {
     return (
       <div className="moviesfetch">
@@ -84,6 +117,7 @@ function MovieFetch() {
             <div>Data wydania: {items.Released}</div>
           </div>
         </div>
+        <ScrollButton />
       </div>
     );
   }
@@ -244,7 +278,15 @@ function MZKFetch() {
   if (error) {
     return <h1 style={{ fontStyle: 150 }}>Error! {error.message}</h1>;
   } else if (!isLoaded) {
-    return <h1>Ładowanie...</h1>;
+    return (
+      <div className="zywiectable">
+        <div className="header skeleton" />
+        <div
+          className="timetableSkeleton skeleton"
+          dangerouslySetInnerHTML={{ __html: items }}
+        ></div>
+      </div>
+    );
   } else {
     return (
       //dangerouslySetInnerHTML - zamienia text w html
