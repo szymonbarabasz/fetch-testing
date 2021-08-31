@@ -31,15 +31,20 @@ function Ratings(props) {
 }
 
 function ScrollButton(props) {
-  function handleClick(){
+  function handleClick() {
     window.scroll({
       top: document.body.offsetHeight,
       left: 0,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
   }
 
-  return <button className="scrollButton fas fa-chevron-down" onClick={handleClick}></button>;
+  return (
+    <button
+      className="scrollButton fas fa-chevron-down"
+      onClick={handleClick}
+    ></button>
+  );
 }
 
 function MovieFetch() {
@@ -78,7 +83,7 @@ function MovieFetch() {
   }, [title]);
 
   if (error) {
-    return <h1 style={{ fontStyle: 150 }}>Error! {error.message}</h1>;
+    return <h1 style={{ fontStyle: 150 }} className="error">Error! {error.message}</h1>;
   } else if (!isLoaded) {
     return (
       <div className="movies">
@@ -133,8 +138,8 @@ function BusSelect(props) {
         onChange={props.handleChange}
         key={props.stop}
       >
-        <option value="3 Sienna" key="3">
-          3 Sienna
+        <option value="3 Sienna / Leśna" key="3">
+          3 Sienna / Leśna
         </option>
         <option value="8 Żywiec Pętla MZK" key="8">
           8 Żywiec Pętla MZK
@@ -217,7 +222,7 @@ function MZKFetch() {
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
   const [line, setLine] = useState("3");
-  const [direction, setDirection] = useState("Sienna");
+  const [direction, setDirection] = useState("Sienna / Leśna");
   const [stop, setStop] = useState("58");
   const formData = new FormData();
   formData.append("kierunek", direction);
@@ -276,15 +281,13 @@ function MZKFetch() {
   });
 
   if (error) {
-    return <h1 style={{ fontStyle: 150 }}>Error! {error.message}</h1>;
+    return <h1 style={{ fontStyle: 150 }} className="error">Error! {error.message}</h1>;
   } else if (!isLoaded) {
     return (
       <div className="zywiectable">
         <div className="header skeleton" />
-        <div
-          className="timetableSkeleton skeleton"
-          dangerouslySetInnerHTML={{ __html: items }}
-        ></div>
+        <div className="timetableSkeleton skeleton" />
+        <div className="legendSkeleton skeleton" />
       </div>
     );
   } else {

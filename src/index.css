@@ -11,6 +11,11 @@ body {
   width: 100vw;
   height: 100vh;
 }
+.error{
+  text-align: center;
+  margin: 100px;
+  height: 200px;
+}
 .busSelect,
 .stopSelect {
   width: 200px;
@@ -28,7 +33,7 @@ body {
   text-align: center;
 }
 .MZKfetch {
-  height: 125vh;
+  height: 115vh;
   width: 100vw;
   background-color: rgba(99,0,105,0.15);
   text-align: center;
@@ -108,6 +113,13 @@ body {
 }
 .timetableSkeleton{
   height: 600px;
+  width: 300px;
+  margin: 2% 0 0 50%;
+  transform: translate(-50%);
+  border-radius: 15px;
+}
+.legendSkeleton{
+  height: 100px;
   width: 300px;
   margin: 2% 0 0 50%;
   transform: translate(-50%);
