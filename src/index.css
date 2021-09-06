@@ -11,7 +11,7 @@ body {
   width: 100vw;
   height: 100vh;
 }
-.error{
+.error {
   text-align: center;
   margin: 100px;
   height: 200px;
@@ -33,9 +33,10 @@ body {
   text-align: center;
 }
 .MZKfetch {
-  height: 115vh;
+  min-height: 100vh;
+  max-height: max-content;
   width: 100vw;
-  background-color: rgba(99,0,105,0.15);
+  background-color: rgba(99, 0, 105, 0.15);
   text-align: center;
 }
 .header {
@@ -67,18 +68,18 @@ body {
   text-align: justify;
   margin: 3% 0 0 30%;
 }
-.timetable{
+.timetable {
   text-align: left;
   margin: 2% 0 0 50%;
-  transform: translate(-16%);
+  transform: translate(-150px);
 }
-.table-rozklad{
+.table-rozklad {
   margin-bottom: 5px;
   background-color: rgba(162, 110, 190, 0.69);
   border-radius: 15px;
   width: 300px;
 }
-.scrollButton{
+.scrollButton {
   width: 66px;
   height: 66px;
   position: absolute;
@@ -89,16 +90,16 @@ body {
   font-size: 200%;
   transition: ease 500ms all;
 }
-.scrollButton:hover{
+.scrollButton:hover {
   font-size: 250%;
   cursor: pointer;
-  background-color:  rgba(255, 195, 255, 1);
+  background-color: rgba(255, 195, 255, 1);
 }
-.scrollButton:active{
-  background-color:  rgb(255, 99, 255);
+.scrollButton:active {
+  background-color: rgb(255, 99, 255);
 }
 
-.skeleton{
+.skeleton {
   opacity: 0.7;
   animation: skeleton-loading 1s linear infinite alternate;
 }
@@ -111,21 +112,21 @@ body {
     background-color: hsl(200, 20%, 95%);
   }
 }
-.timetableSkeleton{
+.timetableSkeleton {
   height: 600px;
   width: 300px;
   margin: 2% 0 0 50%;
   transform: translate(-50%);
   border-radius: 15px;
 }
-.legendSkeleton{
+.legendSkeleton {
   height: 100px;
   width: 300px;
   margin: 2% 0 0 50%;
   transform: translate(-50%);
   border-radius: 15px;
 }
-.moviestableSkeleton{
+.moviestableSkeleton {
   height: 300px;
   width: 500px;
   margin: 2% 0 50px 50%;
@@ -133,7 +134,7 @@ body {
   font-size: 125%;
   text-align: justify;
 }
-.skeleton-text{
+.skeleton-text {
   margin: 0 0 5px;
   width: 100%;
   height: 32px;
