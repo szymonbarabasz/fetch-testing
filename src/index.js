@@ -11,9 +11,7 @@ function Search(props) {
     />
   );
 }
-// const title = prompt("Wpisz tytuł filmu który szukasz po angielsku");
 
-//sposób na robienie loopów i if-ów w react
 function Ratings(props) {
   let ratingsArr = [];
   if (!props.ratings || props.ratings.length === 0) {
@@ -56,8 +54,7 @@ function MovieFetch() {
   function handleChange(e) {
     setTitle(e.target.value);
   }
-  //dobrze jest zrobić fetch-a w componentDidMount po renderze (tutaj useEffect)
-  //ponieważ odpali to wszystko po renderze właśnie
+
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?t=${title}&apikey=63e8f48b`, {
       method: "GET",
@@ -261,9 +258,8 @@ function MZKFetch() {
         Accept: "*/*",
         "Accept-Encoding": "gzip, deflate, br",
         authorization: "no-scam",
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": "*",
       },
-      //aby wysyłać dane, musimy je przekazać do body
       body: formData,
     })
       .then((res) => res.text())
@@ -295,7 +291,6 @@ function MZKFetch() {
     );
   } else {
     return (
-      //dangerouslySetInnerHTML - zamienia text w html
       <div className="MZKfetch">
         <div className="zywiectable">
           <div className="header">
