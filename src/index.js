@@ -30,7 +30,7 @@ function Ratings(props) {
   return ratingsArr;
 }
 
-function ScrollButton(props) {
+function ScrollButton() {
   function handleClick() {
     window.scroll({
       top: document.body.offsetHeight,
@@ -70,10 +70,8 @@ function MovieFetch() {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result);
           setIsLoaded(true);
           setItems(result);
-          console.log(result.Ratings);
         },
         (error) => {
           setIsLoaded(false);
@@ -83,7 +81,11 @@ function MovieFetch() {
   }, [title]);
 
   if (error) {
-    return <h1 style={{ fontStyle: 150 }} className="error">Error! {error.message}</h1>;
+    return (
+      <h1 style={{ fontStyle: 150 }} className="error">
+        Error! {error.message}
+      </h1>
+    );
   } else if (!isLoaded) {
     return (
       <div className="movies">
@@ -231,7 +233,6 @@ function MZKFetch() {
 
   function handleChange(e) {
     const target = e.target.value;
-    console.log(target);
     return (
       setLine(target.split(" ")[0]),
       setDirection(target.slice(2, target.length))
@@ -240,8 +241,6 @@ function MZKFetch() {
 
   function handleStop(e) {
     const target = e.target.value;
-    console.log(target);
-    console.log(e.target.nextSibling.value);
     return (
       setStop(target),
       setTimeout(() => {
@@ -262,7 +261,7 @@ function MZKFetch() {
         Accept: "*/*",
         "Accept-Encoding": "gzip, deflate, br",
         authorization: "no-scam",
-        "Access-Control-Allow-Origin": "*",
+        'Access-Control-Allow-Origin': '*',
       },
       //aby wysyłać dane, musimy je przekazać do body
       body: formData,
@@ -281,7 +280,11 @@ function MZKFetch() {
   });
 
   if (error) {
-    return <h1 style={{ fontStyle: 150 }} className="error">Error! {error.message}</h1>;
+    return (
+      <h1 style={{ fontStyle: 150 }} className="error">
+        Error! {error.message}
+      </h1>
+    );
   } else if (!isLoaded) {
     return (
       <div className="zywiectable">
