@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./index.scss";
+import "../styles/index.css";
 
-function Search(props) {
+function Search(props: {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}): JSX.Element {
   return (
     <input
       className="moviesinput"
@@ -11,23 +13,22 @@ function Search(props) {
   );
 }
 
-function Ratings(props) {
-  let ratingsArr = [];
+function Ratings(props: {
+  ratings: { Source: string; Value: string }[];
+}): JSX.Element {
   if (!props.ratings || props.ratings.length === 0) {
-    ratingsArr.push(<div key={0}>Brak innych ocen</div>);
+    return <div key={0}>Brak innych ocen</div>;
   } else {
-    for (let i = 0; i < props.ratings.length; i++) {
-      ratingsArr.push(
-        <div key={i}>
-          Ocena {props.ratings[i].Source}: {props.ratings[i].Value}
-        </div>
-      );
-    }
+    const ratingsArr = props.ratings.map((el, i) => (
+      <div key={i}>
+        Ocena {el.Source}: {el.Value}
+      </div>
+    ));
+    return <div>{ratingsArr}</div>;
   }
-  return ratingsArr;
 }
 
-function ScrollButton() {
+function ScrollButton(): JSX.Element {
   function handleClick() {
     window.scroll({
       top: document.body.offsetHeight,
@@ -44,13 +45,48 @@ function ScrollButton() {
   );
 }
 
-export default function MovieFetch() {
+interface MovieInfo {
+  Title: string;
+  Actors: string;
+  Director: string;
+  Genre: string;
+  Year: string;
+  imdbRating: string;
+  Metascore: string;
+  Ratings: { Source: string; Value: string }[];
+  Released: string;
+}
+
+const MoviesDefaultValue = {
+  Title: "",
+  Actors: "",
+  Director: "",
+  Genre: "",
+  Year: "",
+  imdbRating: "",
+  Metascore: "",
+  Ratings: [{ Source: "", Value: "" }],
+  Released: "",
+};
+
+export default function MovieFetch(): JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<MovieInfo>(MoviesDefaultValue);
   const [title, setTitle] = useState("The Room");
+  const movieInfoArr = [
+    { label: "Tytuł", path: items.Title },
+    { label: "Aktorzy", path: items.Actors },
+    { label: "Reżyser", path: items.Director },
+    { label: "Gatunek", path: items.Genre },
+    { label: "Rok produkcji", path: items.Year },
+    { label: "Ocena imdb", path: items.imdbRating },
+    { label: "Ocena metascore", path: items.Metascore },
+    { label: "Ratings", path: items.Ratings },
+    { label: "Data wydania", path: items.Released },
+  ];
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value);
   }
 
@@ -74,52 +110,64 @@ export default function MovieFetch() {
       );
   }, [title]);
 
-  if (error) {
-    return (
-      <h1 style={{ fontStyle: 150 }} className="error">
-        Error! {error.message}
-      </h1>
-    );
-  } else if (!isLoaded) {
-    return (
-      <div className="movies">
-        <div className="header skeleton" />
-        <div className="moviestableSkeleton">
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
-          <div className="skeleton-text skeleton" />
+  const skeletonRender = movieInfoArr.map(() => {
+    return <div className="skeleton-text skeleton" />;
+  });
+
+  const movieInfoFunction = (
+    label: string,
+    path:
+      | string
+      | {
+          Source: string;
+          Value: string;
+        }[]
+  ) => {
+    return path ? `${label}: ${path}` : `${label}: Brak`;
+  };
+
+  const moveInfoArrRender = movieInfoArr.map((el, index) => (
+    <div>
+      {el.label !== "Ratings" ? (
+        <div key={index}>{movieInfoFunction(el.label, el.path)}</div>
+      ) : (
+        <Ratings ratings={items.Ratings} />
+      )}
+    </div>
+  ));
+
+  const errorAndLoadingCheck = () => {
+    if (error) {
+      return (
+        <h1 style={{ fontStyle: "150" }} className="error">
+          Error! {error}
+        </h1>
+      );
+    } else if (!isLoaded) {
+      return (
+        <div className="movies">
+          <div className="header skeleton" />
+          <div className="moviestableSkeleton">{skeletonRender}</div>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="moviesfetch">
+      );
+    } else {
+      return (
         <div className="movies">
           <div className="header">
             <h2 className="title">Tabela z danymi nt. filmów</h2>
             <h3 className="subtitle">wpisz tytuł filmu:</h3>
           </div>
           <Search handleChange={handleChange} />
-          <div className="moviestable">
-            <div>Tytuł: {items.Title}</div>
-            <div>Aktorzy: {items.Actors}</div>
-            <div>Reżyser: {items.Director}</div>
-            <div>Gatunek: {items.Genre}</div>
-            <div>Rok produkcji: {items.Year}</div>
-            <div>Ocena imdb: {items.imdbRating}</div>
-            <div>Ocena metascore: {items.Metascore}</div>
-            <Ratings ratings={items.Ratings} />
-            <div>Data wydania: {items.Released}</div>
-          </div>
+          <div className="moviestable">{moveInfoArrRender}</div>
         </div>
-        <ScrollButton />
-      </div>
-    );
-  }
+      );
+    }
+  };
+
+  return (
+    <div className="moviesfetch">
+      {errorAndLoadingCheck()}
+      <ScrollButton />
+    </div>
+  );
 }

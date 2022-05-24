@@ -1,0 +1,226 @@
+.skeleton {
+  opacity: 0.7;
+  -webkit-animation: skeleton-loading 1s linear infinite alternate;
+          animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.moviestableSkeleton {
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  width: 500px;
+  margin: 2% 0 50px 50%;
+  height: 300px;
+  font-size: 125%;
+  text-align: justify;
+}
+
+.moviestableSkeleton .skeleton-text {
+  margin: 0 0 5px;
+  width: 100%;
+  height: 32px;
+  border-radius: 15px;
+}
+
+.timetableSkeleton {
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  width: 300px;
+  margin: 2% 0 0 50%;
+  height: 600px;
+  border-radius: 15px;
+}
+
+.legendSkeleton {
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  width: 300px;
+  margin: 2% 0 0 50%;
+  height: 100px;
+  border-radius: 15px;
+}
+
+.movies,
+.zywiectable {
+  padding: 30px 0 0 30px;
+}
+
+.movies .header,
+.zywiectable .header {
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  width: 600px;
+  margin: 0 50% 30px 50%;
+  text-align: center;
+  background-color: black;
+  height: 90px;
+  border-radius: 60px;
+}
+
+.movies .header .title,
+.zywiectable .header .title {
+  text-align: center;
+  font-size: 32px;
+  color: #e4e3be;
+}
+
+.movies .header .subtitle,
+.zywiectable .header .subtitle {
+  text-align: center;
+  font-size: 24px;
+  color: #e4e3be;
+}
+
+.movies .moviesinput,
+.zywiectable .moviesinput {
+  width: 30%;
+  height: 32px;
+  border-radius: 5px;
+}
+
+.movies .moviestable,
+.zywiectable .moviestable {
+  font-size: 125%;
+  text-align: justify;
+  margin: 3% 0 0 30%;
+}
+
+.movies .busSelect,
+.movies .stopSelect,
+.zywiectable .busSelect,
+.zywiectable .stopSelect {
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.movies .timetable,
+.zywiectable .timetable {
+  text-align: left;
+  margin: 2% 0 0 50%;
+  -webkit-transform: translate(-150px);
+          transform: translate(-150px);
+}
+
+.movies .timetable .table-rozklad,
+.zywiectable .timetable .table-rozklad {
+  margin-bottom: 5px;
+  background-color: rgba(162, 110, 190, 0.69);
+  border-radius: 15px;
+  width: 300px;
+}
+
+@media (max-width: 700px) {
+  .header {
+    width: 375px;
+    height: 70px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+  .moviesinput {
+    width: 75%;
+  }
+  .moviestable {
+    font-size: 100%;
+    margin-left: 0;
+  }
+  .scrollButton {
+    width: 60px;
+    height: 60px;
+    font-size: 150%;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    width: 300px;
+    height: 55px;
+  }
+  .title {
+    font-size: 16px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
+}
+
+@-webkit-keyframes skeleton-loading {
+  0% {
+    background-color: #a3b8c2;
+  }
+  100% {
+    background-color: #f0f3f5;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #a3b8c2;
+  }
+  100% {
+    background-color: #f0f3f5;
+  }
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.MZKfetch {
+  min-height: 100vh;
+  max-height: -webkit-max-content;
+  max-height: -moz-max-content;
+  max-height: max-content;
+  width: 100vw;
+  background-color: rgba(99, 0, 105, 0.15);
+  text-align: center;
+}
+
+.moviesfetch {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+
+.error {
+  text-align: center;
+  margin: 100px;
+  height: 200px;
+}
+
+.scrollButton {
+  width: 66px;
+  height: 66px;
+  position: absolute;
+  bottom: 2%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  border: solid 5px black;
+  border-radius: 50%;
+  font-size: 200%;
+  -webkit-transition: ease 500ms all;
+  transition: ease 500ms all;
+}
+
+.scrollButton:hover {
+  font-size: 250%;
+  cursor: pointer;
+  background-color: #ffc3ff;
+}
+
+.scrollButton:active {
+  background-color: #ff63ff;
+}
+/*# sourceMappingURL=index.css.map */

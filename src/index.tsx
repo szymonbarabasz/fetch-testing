@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MovieFetch from "./app/movieRatings";
 import MZKFetch from "./app/MZKTimeTable";
+import "./styles/index.css";
 
 class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <MovieFetch className="moviefetch" />
-        <MZKFetch className="MZKfetch" />
+        <MovieFetch />
+        <MZKFetch />
       </React.Fragment>
     );
   }

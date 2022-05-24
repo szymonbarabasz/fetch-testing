@@ -1,99 +1,92 @@
 import React, { useState, useEffect } from "react";
-import "./index.scss";
+import "../styles/index.css";
 
-function BusSelect(props) {
-  const busArr = [];
+function BusSelect(props: {
+  stop: string;
+  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}): JSX.Element {
+  const JublieuszowaStopDirectionsArray = [
+    { direction: "Sienna / Leśna", busNumber: "3" },
+    { direction: "Żywiec Pętla MZK", busNumber: "8" },
+  ];
+  const DworzecStopDirectionArray = [
+    { direction: "Świnna, Przyłęków, Pewel Ślemieńska", busNumber: "1" },
+    { direction: "Trzebinia", busNumber: "2" },
+    { direction: "Żywiec ul. Sporyska", busNumber: "3" },
+    { direction: "Żywiec Fabryka Śrub", busNumber: "5" },
+    { direction: "Rychwałdek, Pewel Ślemieńska", busNumber: "8" },
+    { direction: "Kocurów pętla", busNumber: "10" },
+    { direction: "Żywiec Kocurów", busNumber: "12" },
+    { direction: "Przyłęków", busNumber: "13" },
+    { direction: "Żywiec Spółdzielnia, Kocurów", busNumber: "15" },
+  ];
+  const PilsudskiegoStopDirectionArray = [
+    { direction: "Żywiec Os. Zgoda", busNumber: "1" },
+    { direction: "Żywiec Pętla MZK", busNumber: "2" },
+    { direction: "Radziechowy, Przybędza", busNumber: "5" },
+    { direction: "Juszczyna", busNumber: "10" },
+    { direction: "Żywiec Pętla MZK, Dz. Przemysłowa", busNumber: "12" },
+    { direction: "Żywiec Pętla MZK, Os. Kochanowskiego", busNumber: "13" },
+    { direction: "Brzuśnik", busNumber: "15" },
+  ];
 
-  if (props.stop === "58") {
-    busArr.push(
-      <select
-        className="busSelect"
-        onChange={props.handleChange}
-        key={props.stop}
-      >
-        <option value="3 Sienna / Leśna" key="3">
-          3 Sienna / Leśna
+  const directionsMap = (
+    BusStopArray: {
+      direction: string;
+      busNumber: string;
+    }[]
+  ) => {
+    return BusStopArray.map((el) => {
+      return (
+        <option value={`${el.busNumber} ${el.direction}`} key={el.busNumber}>
+          {el.busNumber} {el.direction}
         </option>
-        <option value="8 Żywiec Pętla MZK" key="8">
-          8 Żywiec Pętla MZK
-        </option>
-      </select>
-    );
-  } else if (props.stop === "647") {
-    busArr.push(
-      <select
-        className="busSelect"
-        onChange={props.handleChange}
-        key={props.stop}
-      >
-        <option value="1 Świnna, Przyłęków, Pewel Ślemieńska" key="1">
-          1 Świnna, Przyłęków, Pewel Ślemieńska
-        </option>
-        <option value="2 Trzebinia" key="2">
-          2 Trzebinia
-        </option>
-        <option value="3 Żywiec ul. Sporyska" key="3">
-          3 Żywiec ul.Sporyska
-        </option>
-        <option value="5 Żywiec Fabryka Śrub" key="5">
-          5 Żywiec Fabryka Śrub
-        </option>
-        <option value="8 Rychwałdek, Pewel Ślemieńska" key="8">
-          8 Rychwałdek, Pewel Ślemieńska
-        </option>
-        <option value="10 Kocurów pętla" key="10">
-          10 Kocurów pętla
-        </option>
-        <option value="12 Żywiec Kocurów" key="12">
-          12 Żywiec Kocurów
-        </option>
-        <option value="13 Przyłęków" key="13">
-          13 Przyłęków
-        </option>
-        <option value="15 Żywiec Spółdzielnia, Kocurów" key="15">
-          15 Żywiec Spółdzielnia, Kocurów
-        </option>
-      </select>
-    );
-  } else if (props.stop === "548") {
-    busArr.push(
-      <select
-        className="busSelect"
-        onChange={props.handleChange}
-        key={props.stop}
-      >
-        <option value="1 Żywiec Os. Zgoda" key="1">
-          1 Żywiec Os. Zgoda
-        </option>
-        <option value="2 Żywiec Pętla MZK" key="2">
-          2 Żywiec Pętla MZK
-        </option>
-        <option value="5 Radziechowy, Przybędza" key="5">
-          5 Radziechowy, Przybędza
-        </option>
-        <option value="10 Juszczyna" key="10">
-          10 Juszczyna
-        </option>
-        <option value="12 Żywiec Pętla MZK, Dz. Przemysłowa" key="12">
-          12 Żywiec Pętla MZK, Dz. Przemysłowa
-        </option>
-        <option value="13 Żywiec Pętla MZK, Os. Kochanowskiego" key="13">
-          13 Żywiec Pętla MZK, Os. Kochanowskiego
-        </option>
-        <option value="15 Brzuśnik" key="15">
-          15 Brzuśnik
-        </option>
-      </select>
-    );
+      );
+    });
+  };
+
+  function stopCheck() {
+    if (props.stop === "58") {
+      return (
+        <select
+          className="busSelect"
+          onChange={props.handleChange}
+          key={props.stop}
+        >
+          {directionsMap(JublieuszowaStopDirectionsArray)}
+        </select>
+      );
+    } else if (props.stop === "647") {
+      return (
+        <select
+          className="busSelect"
+          onChange={props.handleChange}
+          key={props.stop}
+        >
+          {directionsMap(DworzecStopDirectionArray)}
+        </select>
+      );
+    } else if (props.stop === "548") {
+      return (
+        <select
+          className="busSelect"
+          onChange={props.handleChange}
+          key={props.stop}
+        >
+          {directionsMap(PilsudskiegoStopDirectionArray)}
+        </select>
+      );
+    } else {
+      return <div></div>;
+    }
   }
-
-  return busArr;
+  return stopCheck();
 }
 
-export default function MZKFetch() {
+export default function MZKFetch(): JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState("");
   const [line, setLine] = useState("3");
   const [direction, setDirection] = useState("Sienna / Leśna");
   const [stop, setStop] = useState("58");
@@ -102,31 +95,30 @@ export default function MZKFetch() {
   formData.append("linia", line);
   formData.append("przystanek", stop);
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const target = e.target.value;
-    return (
-      setLine(target.split(" ")[0]),
-      setDirection(target.slice(2, target.length))
-    );
+    setDirection(target.slice(2, target.length));
+    setLine(target.split(" ")[0]);
   }
 
-  function handleStop(e) {
-    const target = e.target.value;
-    return (
-      setStop(target),
-      setTimeout(() => {
-        setDirection(
-          e.target.nextSibling.value.slice(2, e.target.nextSibling.value.length)
-        );
-      }, 0),
-      setTimeout(() => {
-        setLine(e.target.nextSibling.value.split(" ")[0]);
-      }, 0)
-    );
+  function handleStop(e: React.ChangeEvent<HTMLSelectElement>) {
+    const target = e.target;
+    let direction;
+    let line;
+
+    setStop(target.value);
+    setTimeout(() => {
+      direction = target.nextSibling?.firstChild?.textContent;
+      line = target.nextSibling?.firstChild?.textContent;
+      if (typeof direction === "string" && typeof line === "string") {
+        setDirection(direction.slice(2, direction.length));
+        setLine(line.split(" ")[0]);
+      }
+    }, 0);
   }
 
   useEffect(() => {
-    fetch("https://limitless-everglades-89814.herokuapp.com/mzk", {
+    fetch("https://fast-brook-75407.herokuapp.com/mzk", {
       method: "POST",
       headers: {
         Accept: "*/*",
@@ -149,23 +141,23 @@ export default function MZKFetch() {
       );
   });
 
-  if (error) {
-    return (
-      <h1 style={{ fontStyle: 150 }} className="error">
-        Error! {error.message}
-      </h1>
-    );
-  } else if (!isLoaded) {
-    return (
-      <div className="zywiectable">
-        <div className="header skeleton" />
-        <div className="timetableSkeleton skeleton" />
-        <div className="legendSkeleton skeleton" />
-      </div>
-    );
-  } else {
-    return (
-      <div className="MZKfetch">
+  const errorAndLoadingCheck = () => {
+    if (error) {
+      return (
+        <h1 style={{ fontStyle: "150" }} className="error">
+          Error! {error}
+        </h1>
+      );
+    } else if (!isLoaded) {
+      return (
+        <div className="zywiectable">
+          <div className="header skeleton" />
+          <div className="timetableSkeleton skeleton" />
+          <div className="legendSkeleton skeleton" />
+        </div>
+      );
+    } else {
+      return (
         <div className="zywiectable">
           <div className="header">
             <h2 className="title">Tabela rozkładu jazdy MZK Żywiec</h2>
@@ -182,18 +174,15 @@ export default function MZKFetch() {
               Piłsudskiego II
             </option>
           </select>
-          <BusSelect
-            handleChange={handleChange}
-            stop={stop}
-            direction={setDirection}
-            line={setLine}
-          />
+          <BusSelect handleChange={handleChange} stop={stop} />
           <div
             className="timetable"
             dangerouslySetInnerHTML={{ __html: items }}
           ></div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
+  };
+
+  return <div className="MZKfetch">{errorAndLoadingCheck()}</div>;
 }
