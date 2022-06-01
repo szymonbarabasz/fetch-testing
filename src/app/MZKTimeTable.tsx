@@ -163,18 +163,20 @@ export default function MZKFetch(): JSX.Element {
             <h2 className="title">Tabela rozkładu jazdy MZK Żywiec</h2>
             <h3 className="subtitle">wybierz przystanek i linię:</h3>
           </div>
-          <select className="stopSelect" onChange={handleStop}>
-            <option value="58" key="58">
-              Jubileuszowa
-            </option>
-            <option value="647" key="647">
-              Dworzec
-            </option>
-            <option value="548" key="548">
-              Piłsudskiego II
-            </option>
-          </select>
-          <BusSelect handleChange={handleChange} stop={stop} />
+          <div className="selectors">
+            <select className="stopSelect" onChange={handleStop}>
+              <option value="58" key="58">
+                Jubileuszowa
+              </option>
+              <option value="647" key="647">
+                Dworzec
+              </option>
+              <option value="548" key="548">
+                Piłsudskiego II
+              </option>
+            </select>
+            <BusSelect handleChange={handleChange} stop={stop} />
+          </div>
           <div
             className="timetable"
             dangerouslySetInnerHTML={{ __html: items }}

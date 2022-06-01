@@ -1,37 +1,60 @@
-@media (max-width: 700px) {
-  .header {
-    width: 375px;
-    height: 70px;
+$first-breakpoint: 960px;
+$second-breakpoint: 590px;
+$third-breakpoint: 530px;
+
+@media (max-width: $first-breakpoint) {
+  .movies,
+  .zywiectable {
+    .header {
+      height: 70px;
+      .title {
+        font-size: 20px;
+      }
+      .subtitle {
+        font-size: 18px;
+      }
+    }
+    .moviesinput {
+      width: 65%;
+    }
+    .moviestable {
+      font-size: 120%;
+      left: 10%;
+    }
   }
-  .title {
-    font-size: 20px;
-  }
-  .subtitle {
-    font-size: 18px;
-  }
-  .moviesinput {
-    width: 75%;
-  }
-  .moviestable {
-    font-size: 100%;
-    margin-left: 0;
-  }
+
   .scrollButton {
     width: 60px;
     height: 60px;
     font-size: 150%;
   }
 }
-@media (max-width: 400px) {
-  .header {
-    width: 300px;
-    height: 55px;
+@media (max-width: $second-breakpoint) {
+  .movies,
+  .zywiectable {
+    .header {
+      height: 55px;
+      .title {
+        font-size: 18px;
+      }
+      .subtitle {
+        font-size: 16px;
+      }
+    }
   }
-  .title {
-    font-size: 16px;
-  }
-  .subtitle {
-    font-size: 14px;
+}
+@media (max-width: $third-breakpoint) {
+  .movies,
+  .zywiectable {
+    .header {
+      height: 50px;
+      .title {
+        font-size: 16px;
+      }
+      .subtitle {
+        font-size: 14px;
+      }
+    }
   }
 }
 

@@ -5,10 +5,7 @@
 }
 
 .moviestableSkeleton {
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
   width: 500px;
-  margin: 2% 0 50px 50%;
   height: 300px;
   font-size: 125%;
   text-align: justify;
@@ -22,52 +19,59 @@
 }
 
 .timetableSkeleton {
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
   width: 300px;
-  margin: 2% 0 0 50%;
   height: 600px;
   border-radius: 15px;
 }
 
 .legendSkeleton {
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
   width: 300px;
-  margin: 2% 0 0 50%;
   height: 100px;
   border-radius: 15px;
 }
 
 .movies,
 .zywiectable {
-  padding: 30px 0 0 30px;
+  width: 100vw;
+  min-height: 100vh;
+  max-height: -webkit-max-content;
+  max-height: -moz-max-content;
+  max-height: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .movies .header,
 .zywiectable .header {
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  width: 600px;
-  margin: 0 50% 30px 50%;
   text-align: center;
-  background-color: black;
+  background-color: #d0dce1;
   height: 90px;
-  border-radius: 60px;
+  width: 55%;
+  margin: 30px 0 15px 0;
+  border: 3px solid #bebbbb;
+  border-radius: 20px;
 }
 
 .movies .header .title,
 .zywiectable .header .title {
   text-align: center;
   font-size: 32px;
-  color: #e4e3be;
+  color: black;
 }
 
 .movies .header .subtitle,
 .zywiectable .header .subtitle {
   text-align: center;
   font-size: 24px;
-  color: #e4e3be;
+  color: black;
 }
 
 .movies .moviesinput,
@@ -81,13 +85,25 @@
 .zywiectable .moviestable {
   font-size: 125%;
   text-align: justify;
-  margin: 3% 0 0 30%;
+  position: absolute;
+  top: 182px;
+  left: 25%;
 }
 
-.movies .busSelect,
-.movies .stopSelect,
-.zywiectable .busSelect,
-.zywiectable .stopSelect {
+.movies .moviestable .singleMovieInfo,
+.zywiectable .moviestable .singleMovieInfo {
+  padding: 2px;
+}
+
+.movies .selectors,
+.zywiectable .selectors {
+  display: block;
+}
+
+.movies .selectors .busSelect,
+.movies .selectors .stopSelect,
+.zywiectable .selectors .busSelect,
+.zywiectable .selectors .stopSelect {
   width: 200px;
   height: 30px;
   text-align: center;
@@ -97,36 +113,50 @@
 .movies .timetable,
 .zywiectable .timetable {
   text-align: left;
-  margin: 2% 0 0 50%;
-  -webkit-transform: translate(-150px);
-          transform: translate(-150px);
+  margin-top: 2%;
 }
 
 .movies .timetable .table-rozklad,
 .zywiectable .timetable .table-rozklad {
   margin-bottom: 5px;
   background-color: rgba(162, 110, 190, 0.69);
+  border: 2px solid black;
   border-radius: 15px;
   width: 300px;
 }
 
-@media (max-width: 700px) {
-  .header {
-    width: 375px;
+.movies .timetable .table-rozklad td,
+.zywiectable .timetable .table-rozklad td {
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.movies .timetable .table-rozklad .linia,
+.zywiectable .timetable .table-rozklad .linia {
+  border-style: none;
+}
+
+@media (max-width: 960px) {
+  .movies .header,
+  .zywiectable .header {
     height: 70px;
   }
-  .title {
+  .movies .header .title,
+  .zywiectable .header .title {
     font-size: 20px;
   }
-  .subtitle {
+  .movies .header .subtitle,
+  .zywiectable .header .subtitle {
     font-size: 18px;
   }
-  .moviesinput {
-    width: 75%;
+  .movies .moviesinput,
+  .zywiectable .moviesinput {
+    width: 65%;
   }
-  .moviestable {
-    font-size: 100%;
-    margin-left: 0;
+  .movies .moviestable,
+  .zywiectable .moviestable {
+    font-size: 120%;
+    left: 10%;
   }
   .scrollButton {
     width: 60px;
@@ -135,15 +165,32 @@
   }
 }
 
-@media (max-width: 400px) {
-  .header {
-    width: 300px;
+@media (max-width: 590px) {
+  .movies .header,
+  .zywiectable .header {
     height: 55px;
   }
-  .title {
+  .movies .header .title,
+  .zywiectable .header .title {
+    font-size: 18px;
+  }
+  .movies .header .subtitle,
+  .zywiectable .header .subtitle {
     font-size: 16px;
   }
-  .subtitle {
+}
+
+@media (max-width: 530px) {
+  .movies .header,
+  .zywiectable .header {
+    height: 50px;
+  }
+  .movies .header .title,
+  .zywiectable .header .title {
+    font-size: 16px;
+  }
+  .movies .header .subtitle,
+  .zywiectable .header .subtitle {
     font-size: 14px;
   }
 }
@@ -172,7 +219,10 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: -webkit-max-content;
+  max-height: -moz-max-content;
+  max-height: max-content;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -190,7 +240,10 @@ body {
 
 .moviesfetch {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: -webkit-max-content;
+  max-height: -moz-max-content;
+  max-height: max-content;
   text-align: center;
 }
 

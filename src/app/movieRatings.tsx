@@ -17,10 +17,14 @@ function Ratings(props: {
   ratings: { Source: string; Value: string }[];
 }): JSX.Element {
   if (!props.ratings || props.ratings.length === 0) {
-    return <div key={0}>Brak innych ocen</div>;
+    return (
+      <div className="singleMovieInfo" key={`rate 0`}>
+        Brak innych ocen
+      </div>
+    );
   } else {
     const ratingsArr = props.ratings.map((el, i) => (
-      <div key={i}>
+      <div className="singleMovieInfo" key={`rate ${i}`}>
         Ocena {el.Source}: {el.Value}
       </div>
     ));
@@ -110,8 +114,8 @@ export default function MovieFetch(): JSX.Element {
       );
   }, [title]);
 
-  const skeletonRender = movieInfoArr.map(() => {
-    return <div className="skeleton-text skeleton" />;
+  const skeletonRender = movieInfoArr.map((_el, index) => {
+    return <div className="skeleton-text skeleton" key={index} />;
   });
 
   const movieInfoFunction = (
@@ -126,15 +130,15 @@ export default function MovieFetch(): JSX.Element {
     return path ? `${label}: ${path}` : `${label}: Brak`;
   };
 
-  const moveInfoArrRender = movieInfoArr.map((el, index) => (
-    <div>
-      {el.label !== "Ratings" ? (
-        <div key={index}>{movieInfoFunction(el.label, el.path)}</div>
-      ) : (
-        <Ratings ratings={items.Ratings} />
-      )}
-    </div>
-  ));
+  const moveInfoArrRender = movieInfoArr.map((el, index) =>
+    el.label !== "Ratings" ? (
+      <div className="singleMovieInfo" key={index}>
+        {movieInfoFunction(el.label, el.path)}
+      </div>
+    ) : (
+      <Ratings ratings={items.Ratings} key={`ratings ${index}`} />
+    )
+  );
 
   const errorAndLoadingCheck = () => {
     if (error) {

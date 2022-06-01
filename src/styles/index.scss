@@ -1,11 +1,6 @@
 @import "./moviesClassAndZywiectableClass";
 @import "./mediaAndKeyframes";
 
-@mixin fullScreen() {
-  width: 100vw;
-  height: 100vh;
-}
-
 * {
   margin: 0;
 }

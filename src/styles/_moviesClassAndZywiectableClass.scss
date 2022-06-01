@@ -1,16 +1,27 @@
 @import "./skeleton";
 
-$moviesTextColor: rgba(228, 227, 190, 1);
+$moviesTextColor: rgb(0, 0, 0);
+
+@mixin fullScreen() {
+  width: 100vw;
+  min-height: 100vh;
+  max-height: max-content;
+}
 
 .movies,
 .zywiectable {
-  padding: 30px 0 0 30px;
+  @include fullScreen();
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .header {
-    @include transform(600px, 0 50% 30px 50%);
     text-align: center;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgb(208, 220, 225);
     height: 90px;
-    border-radius: 60px;
+    width: 55%;
+    margin: 30px 0 15px 0;
+    border: 3px solid rgb(190, 187, 187);
+    border-radius: 20px;
     .title {
       text-align: center;
       font-size: 32px;
@@ -30,25 +41,41 @@ $moviesTextColor: rgba(228, 227, 190, 1);
   .moviestable {
     font-size: 125%;
     text-align: justify;
-    margin: 3% 0 0 30%;
+    position: absolute;
+    top: 182px;
+    left: 25%;
+    .singleMovieInfo {
+      padding: 2px;
+    }
   }
 
-  .busSelect,
-  .stopSelect {
-    width: 200px;
-    height: 30px;
-    text-align: center;
-    margin-left: 10px;
+  .selectors {
+    display: block;
+    .busSelect,
+    .stopSelect {
+      width: 200px;
+      height: 30px;
+      text-align: center;
+      margin-left: 10px;
+    }
   }
+
   .timetable {
     text-align: left;
-    margin: 2% 0 0 50%;
-    transform: translate(-150px);
+    margin-top: 2%;
     .table-rozklad {
       margin-bottom: 5px;
       background-color: rgba(162, 110, 190, 0.69);
+      border: 2px solid black;
       border-radius: 15px;
       width: 300px;
+      td {
+        border-right: 1px solid black;
+        border-top: 1px solid black;
+      }
+      .linia {
+        border-style: none;
+      }
     }
   }
 }
