@@ -53,7 +53,9 @@
 .zywiectable .header {
   text-align: center;
   background-color: #d0dce1;
-  height: 90px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   width: 55%;
   margin: 30px 0 15px 0;
   border: 3px solid #bebbbb;
@@ -137,10 +139,6 @@
 }
 
 @media (max-width: 960px) {
-  .movies .header,
-  .zywiectable .header {
-    height: 70px;
-  }
   .movies .header .title,
   .zywiectable .header .title {
     font-size: 20px;
@@ -152,6 +150,7 @@
   .movies .moviestable,
   .zywiectable .moviestable {
     left: 15%;
+    top: 150px;
   }
   .scrollButton {
     width: 60px;
@@ -161,10 +160,6 @@
 }
 
 @media (max-width: 590px) {
-  .movies .header,
-  .zywiectable .header {
-    height: 60px;
-  }
   .movies .header .title,
   .zywiectable .header .title {
     font-size: 18px;
@@ -210,10 +205,20 @@
 }
 
 @media (max-height: 430px) {
+  .movies .header {
+    margin: 10px;
+  }
   .movies .moviestable {
     -webkit-column-count: 3;
             column-count: 3;
     left: 5%;
+    top: 150px;
+  }
+}
+
+@media (max-height: 430px) and (max-width: 960px) {
+  .movies .moviestable {
+    top: 120px;
   }
 }
 

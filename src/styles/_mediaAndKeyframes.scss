@@ -10,7 +10,7 @@ $second-breakpoint-height: 430px;
   .movies,
   .zywiectable {
     .header {
-      height: 70px;
+      // height: 70px;
       .title {
         font-size: 20px;
       }
@@ -20,6 +20,7 @@ $second-breakpoint-height: 430px;
     }
     .moviestable {
       left: 15%;
+      top: 150px;
     }
   }
   .scrollButton {
@@ -32,7 +33,7 @@ $second-breakpoint-height: 430px;
   .movies,
   .zywiectable {
     .header {
-      height: 60px;
+      // height: 60px;
       .title {
         font-size: 18px;
       }
@@ -80,9 +81,20 @@ $second-breakpoint-height: 430px;
 }
 @media (max-height: $second-breakpoint-height) {
   .movies {
+    .header {
+      margin: 10px;
+    }
     .moviestable {
       column-count: 3;
       left: 5%;
+      top: 150px;
+    }
+  }
+  @media (max-width: $first-breakpoint-width) {
+    .movies {
+      .moviestable {
+        top: 120px;
+      }
     }
   }
 }
