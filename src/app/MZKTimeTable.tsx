@@ -151,7 +151,7 @@ export default function MZKFetch(): JSX.Element {
     } else if (!isLoaded) {
       return (
         <div className="zywiectable">
-          <div className="header skeleton" />
+          <div className="headerSkeleton skeleton" />
           <div className="timetableSkeleton skeleton" />
           <div className="legendSkeleton skeleton" />
         </div>

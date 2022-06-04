@@ -150,7 +150,8 @@ export default function MovieFetch(): JSX.Element {
     } else if (!isLoaded) {
       return (
         <div className="movies">
-          <div className="header skeleton" />
+          <div className="headerSkeleton skeleton" />
+          <div className="inputSkeleton skeleton" />
           <div className="moviestableSkeleton">{skeletonRender}</div>
         </div>
       );
