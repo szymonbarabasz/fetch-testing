@@ -35,7 +35,7 @@ function Ratings(props: {
 function ScrollButton(): JSX.Element {
   function handleClick() {
     window.scroll({
-      top: document.body.offsetHeight,
+      top: window.screen.availHeight,
       left: 0,
       behavior: "smooth",
     });

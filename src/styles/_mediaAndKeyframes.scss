@@ -1,8 +1,12 @@
-$first-breakpoint: 960px;
-$second-breakpoint: 590px;
-$third-breakpoint: 530px;
+$first-breakpoint-width: 960px;
+$second-breakpoint-width: 590px;
+$third-breakpoint-width: 530px;
+$fourth-breakpoint-width: 450px;
 
-@media (max-width: $first-breakpoint) {
+$first-breakpoint-height: 590px;
+$second-breakpoint-height: 430px;
+
+@media (max-width: $first-breakpoint-width) {
   .movies,
   .zywiectable {
     .header {
@@ -14,26 +18,21 @@ $third-breakpoint: 530px;
         font-size: 18px;
       }
     }
-    .moviesinput {
-      width: 65%;
-    }
     .moviestable {
-      font-size: 120%;
-      left: 10%;
+      left: 15%;
     }
   }
-
   .scrollButton {
     width: 60px;
     height: 60px;
     font-size: 150%;
   }
 }
-@media (max-width: $second-breakpoint) {
+@media (max-width: $second-breakpoint-width) {
   .movies,
   .zywiectable {
     .header {
-      height: 55px;
+      height: 60px;
       .title {
         font-size: 18px;
       }
@@ -41,19 +40,49 @@ $third-breakpoint: 530px;
         font-size: 16px;
       }
     }
+    .moviesinput {
+      width: 65%;
+    }
+    .moviestable {
+      font-size: 100%;
+      left: 10%;
+    }
   }
 }
-@media (max-width: $third-breakpoint) {
+@media (max-width: $third-breakpoint-width) {
   .movies,
   .zywiectable {
     .header {
-      height: 50px;
       .title {
         font-size: 16px;
       }
       .subtitle {
         font-size: 14px;
       }
+    }
+  }
+}
+@media (max-width: $fourth-breakpoint-width) {
+  .movies {
+    .moviestable {
+      font-size: 80%;
+    }
+  }
+}
+
+@media (max-height: $first-breakpoint-height) {
+  .movies {
+    .moviestable {
+      column-count: 2;
+      text-align: left;
+    }
+  }
+}
+@media (max-height: $second-breakpoint-height) {
+  .movies {
+    .moviestable {
+      column-count: 3;
+      left: 5%;
     }
   }
 }
