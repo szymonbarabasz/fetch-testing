@@ -77,7 +77,7 @@ function BusSelect(props: {
         </select>
       );
     } else {
-      return <div></div>;
+      return <></>;
     }
   }
   return stopCheck();
@@ -103,19 +103,21 @@ export default function MZKFetch(): JSX.Element {
 
   function handleStop(e: React.ChangeEvent<HTMLSelectElement>) {
     const target = e.target;
+    setStop(target.value);
+  }
+
+  useEffect(() => {
+    const target = document.querySelector(".stopSelect");
     let direction;
     let line;
 
-    setStop(target.value);
-    setTimeout(() => {
-      direction = target.nextSibling?.firstChild?.textContent;
-      line = target.nextSibling?.firstChild?.textContent;
-      if (typeof direction === "string" && typeof line === "string") {
-        setDirection(direction.slice(2, direction.length));
-        setLine(line.split(" ")[0]);
-      }
-    }, 0);
-  }
+    direction = target?.nextSibling?.firstChild?.textContent;
+    line = target?.nextSibling?.firstChild?.textContent;
+    if (typeof direction === "string" && typeof line === "string") {
+      setDirection(direction.slice(2, direction.length));
+      setLine(line.split(" ")[0]);
+    }
+  }, [stop]);
 
   useEffect(() => {
     fetch("https://fast-brook-75407.herokuapp.com/mzk", {
