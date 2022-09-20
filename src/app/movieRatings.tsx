@@ -95,11 +95,14 @@ export default function MovieFetch(): JSX.Element {
   }
 
   useEffect(() => {
+    const abortControl = new AbortController();
+
     fetch(`https://www.omdbapi.com/?t=${title}&apikey=63e8f48b`, {
       method: "GET",
       headers: {
         Accept: "application/json",
       },
+      signal: abortControl.signal,
     })
       .then((res) => res.json())
       .then(
@@ -108,10 +111,14 @@ export default function MovieFetch(): JSX.Element {
           setItems(result);
         },
         (error) => {
-          setIsLoaded(false);
-          setError(error);
+          if (error.name !== "AbortError") {
+            setIsLoaded(false);
+            setError(error);
+          }
         }
       );
+
+    return () => abortControl.abort();
   }, [title]);
 
   const skeletonRender = movieInfoArr.map((_el, index) => {

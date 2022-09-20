@@ -120,6 +120,8 @@ export default function MZKFetch(): JSX.Element {
   }, [stop]);
 
   useEffect(() => {
+    const abortControl = new AbortController();
+
     fetch("https://fast-brook-75407.herokuapp.com/mzk", {
       method: "POST",
       headers: {
@@ -129,6 +131,7 @@ export default function MZKFetch(): JSX.Element {
         "Access-Control-Allow-Origin": "*",
       },
       body: formData,
+      signal: abortControl.signal,
     })
       .then((res) => res.text())
       .then(
@@ -137,10 +140,14 @@ export default function MZKFetch(): JSX.Element {
           setItems(res);
         },
         (error) => {
-          setIsLoaded(false);
-          setError(error);
+          if (error.name !== "AbortError") {
+            setIsLoaded(false);
+            setError(error);
+          }
         }
       );
+
+    return () => abortControl.abort();
   });
 
   const errorAndLoadingCheck = () => {
