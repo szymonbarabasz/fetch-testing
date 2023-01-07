@@ -122,7 +122,7 @@ export default function MZKFetch(): JSX.Element {
   useEffect(() => {
     const abortControl = new AbortController();
 
-    fetch("https://fast-brook-75407.herokuapp.com/mzk", {
+    fetch("https://mzk-cors-proxy.onrender.com/mzk", {
       method: "POST",
       headers: {
         Accept: "*/*",
