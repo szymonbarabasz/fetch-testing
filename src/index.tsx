@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MovieFetch from "./app/movieRatings";
-import MZKFetch from "./app/MZKTimeTable";
+import MovieFetch from "./app/movieRatings/movieRatings";
+import MZKFetch from "./app/MZKTimeTable/MZKTimeTable";
 import "./styles/index.css";
 
 class App extends React.Component {
