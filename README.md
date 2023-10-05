@@ -1,4 +1,4 @@
-That's app connects to omdb API of movies and show main data of movie you're searching for.
+That app connects to omdb API of movies and show main data of movie you're searching for.
 Second app connects to herokuapp proxy for data of Żywiec public transport timetable and shows it in convenient form.
 You can choose line and stop to search timetable.
 
